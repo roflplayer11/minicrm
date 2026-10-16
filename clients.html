@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Clients</title>
+</head>
+<body>
+    <header>
+        <h1>MiniCRM</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="clients.html" aria-current="page">Clients</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="tasks.html">Tasks</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Clients</h2>
+        <table class="clients-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Anna Lee</td>
+                    <td>anna@example.com</td>
+                    <td>
+                        <span class="status status-active">Active</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alexander Born</td>
+                    <td>alexander@example.com</td>
+                    <td>
+                        <span class="status status-active">Active</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Morgan Freeman</td>
+                    <td>morgan@example.com</td>
+                    <td>
+                        <span class="status status-inactive">Inactive</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+            <h3>Add Client</h3>
+            <form>
+                <label for="client-name">Name</label>
+                    <input type="text" id="client-name" name="name" required>
+                <label for="client-email">Email</label>
+                    <input type="email" id="client-email" name="email" required>
+                <label for="client-status">Status</label>
+                    <select id="client-status" name="status" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                    <input type="submit" value="Add Client">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>© 2026 MiniCRM</p>
+    </footer>
+</body>
+</html>
