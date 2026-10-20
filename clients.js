@@ -29,3 +29,18 @@ function renderClients() {
     }
 }
 renderClients();
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = document.querySelector('#client-name').value;
+    const email = document.querySelector('#client-email').value;
+    const status = document.querySelector('#client-status').value;
+
+    const newClient = {name, email, status};
+    clients.push(newClient);
+    renderClients();
+    form.reset();
+});
