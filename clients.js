@@ -1,8 +1,15 @@
-let clients = [
+function saveClients() {
+    localStorage.setItem('clients', JSON.stringify(clients));
+}
+
+const DEFAULT_CLIENTS = [
     {id: 1, name: 'Anna Lee', email: 'anna@example.com', status: 'active'},
     {id: 2, name: 'Alexander Born', email: 'alexander@example.com', status: 'active'},
     {id: 3, name: 'Morgan Freeman', email: 'morgan@example.com', status: 'inactive'},
 ];
+
+const saved = localStorage.getItem('clients');
+let clients = saved ? JSON.parse(saved) : DEFAULT_CLIENTS;
 
 const STATUS_LABELS = { active: "Active", inactive: "Inactive" };
 
@@ -26,12 +33,12 @@ function renderClients() {
         statusCell.append(badge);
         row.append(statusCell);
 
-
         const deleteCell = document.createElement('td');
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         deleteButton.addEventListener('click', () => {
             clients = clients.filter(item => item.id !== client.id);
+            saveClients();
             renderClients();
         });
         deleteCell.append(deleteButton);
@@ -54,6 +61,7 @@ form.addEventListener('submit', (event) => {
     const newClient = {id: Date.now(), name, email, status};
 
     clients.push(newClient);
+    saveClients();
     renderClients();
     form.reset();
 });
