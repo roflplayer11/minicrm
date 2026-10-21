@@ -1,7 +1,7 @@
-const clients = [
-    {name: 'Anna Lee', email: 'anna@example.com', status: 'active'},
-    {name: 'Alexander Born', email: 'alexander@example.com', status: 'active'},
-    {name: 'Morgan Freeman', email: 'morgan@example.com', status: 'inactive'},
+let clients = [
+    {id: 1, name: 'Anna Lee', email: 'anna@example.com', status: 'active'},
+    {id: 2, name: 'Alexander Born', email: 'alexander@example.com', status: 'active'},
+    {id: 3, name: 'Morgan Freeman', email: 'morgan@example.com', status: 'inactive'},
 ];
 
 const STATUS_LABELS = { active: "Active", inactive: "Inactive" };
@@ -25,6 +25,18 @@ function renderClients() {
         badge.textContent = STATUS_LABELS[client.status];
         statusCell.append(badge);
         row.append(statusCell);
+
+
+        const deleteCell = document.createElement('td');
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => {
+            clients = clients.filter(item => item.id !== client.id);
+            renderClients();
+        });
+        deleteCell.append(deleteButton);
+        row.append(deleteCell);
+
         tbody.append(row);
     }
 }
@@ -35,11 +47,12 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const name = document.querySelector('#client-name').value;
-    const email = document.querySelector('#client-email').value;
+    const name = document.querySelector('#client-name').value.trim();
+    const email = document.querySelector('#client-email').value.trim();
     const status = document.querySelector('#client-status').value;
 
-    const newClient = {name, email, status};
+    const newClient = {id: Date.now(), name, email, status};
+
     clients.push(newClient);
     renderClients();
     form.reset();
